@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   devise_for :users
 
+  # root "users#index"
+
   # Routes for Home and All Users:
   get("/", { :controller => "users", :action => "index" })
   get("/users", { :controller => "users", :action => "index" })
