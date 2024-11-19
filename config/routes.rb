@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
   devise_for :users
+
+  # Routes for Home and All Users:
+  get("/", { :controller => "users", :action => "index" })
+  get("/users", { :controller => "users", :action => "index" })
+
   # Routes for the Like resource:
 
   # CREATE
