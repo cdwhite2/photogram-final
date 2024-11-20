@@ -55,8 +55,8 @@
         </th>
       </tr>
 
-      <%# public_photos = @list_of_photos.where({ private => false }) %>
       <% @list_of_photos.each do |a_photo| %>
+      <% next if a_photo.poster.private? %>
       <tr>
         <td>
           <img src="<%= a_photo.image %>" class="img-responsive">
@@ -67,7 +67,7 @@
         </td>
 
         <td>
-          <%= a_photo.owner_id %>
+          <%= a_photo.poster.username %>
         </td>
 
         <td>
