@@ -42,6 +42,18 @@
       <% end %>
     </ul>
 
+    <% if notice.present? %>
+      <div style="color: green">
+        <%= notice %>
+      </div>
+    <% end %>
+
+    <% if alert.present? %>
+      <div style="color: red">
+        <%= alert %>
+      </div>
+    <% end %>
+
     <%= yield %>
   </body>
 </html>
