@@ -1,0 +1,85 @@
+<h1><%= @the_user.username %></h1>
+
+<dl>
+  <dt>Private</dt>
+  <dd><%= @the_user.private %>
+
+  <dt>Followers</dt>
+  <dd>
+    <%= @the_user.followers.count %>
+
+  <dt>Following</dt>
+  <dd><%= @the_user.leaders.count %></dd>
+</dl>
+
+<nav>
+  <ul>
+    <li>
+      <a href="/users/<%= @the_user.username %>">Profile</a>
+    </li>
+    <li>
+      <a href="/users/<%= @the_user.username %>/liked_photos">Liked photos</a>
+    </li>
+    <li>
+      <a href="/users/<%= @the_user.username %>/feed">Feed</a>
+    </li>
+    <li>
+      <a href="/users/<%= @the_user.username %>/discover">Discover</a>
+    </li>
+  </ul>
+</nav>
+
+<h2>Liked photos (<%= @the_user.likes.count %>)</h2>
+
+<table border="1">
+  <tr>
+    <th>
+      Image
+    </th>
+
+    <th>
+      Owner
+    </th>
+
+    <th>
+      Caption
+    </th>
+
+    <th>
+      Posted
+    </th>
+
+    <th>
+      Likes
+    </th>
+
+    <th></th>
+  </tr>
+
+  <% @the_user.likes.each do |a_like| %>
+  <% liked_photo = Photo.where({ :id => a_like.photo_id }).at(0) %>
+  <tr>
+    <td>
+      <img src="<%= liked_photo.image %>" class="img-responsive">
+    </td>
+    <td>
+      <%= User.where({ :id => liked_photo.poster }).at(0).username %>
+    </td>
+    <td>
+      <%= liked_photo.caption %>
+    </td>
+    <td>
+      <%= liked_photo.created_at %>
+    </td>
+    <td>
+      <%= liked_photo.likes.count %>
+    </td>
+    <td>
+      <a href="/photos/<%= liked_photo.id %>">
+        Show details
+      </a>
+    </td>
+  </tr>
+  <% end %>
+
+</table>

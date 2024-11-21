@@ -16,4 +16,14 @@ class UsersController < ApplicationController
 
     render({ :template => "users/show" })
   end
+
+  def show_liked
+    username = params.fetch("path_id")
+
+    matching_users = User.where({ :username => username })
+
+    @the_user = matching_users.at(0)
+
+    render({ :template => "users/show_liked" })
+  end
 end
