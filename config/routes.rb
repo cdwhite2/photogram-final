@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   get("/users/:path_id", { :controller => "users", :action => "show" })
   get("/users/:path_id/liked_photos", { :controller => "users", :action => "show_liked" })
   get("/users/:path_id/feed", { :controller => "users", :action => "show_feed" })
+  get("/users/:path_id/discover", { :controller => "users", :action => "show_discover" })
 
   # Routes for the Like resource:
 
