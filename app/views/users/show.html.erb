@@ -8,6 +8,7 @@
   <dd>
     <%= @the_user.followers.count %>
 
+    <% if @the_user.id == current_user.id %>
     <h4>Pending follow requests</h4>
 
     <ul>
@@ -33,6 +34,14 @@
       </li>
       <% end %>
     </ul>
+    <% end %>
+    <% if @the_user.followers.where({ :id => current_user.id }) != nil && current_user.id != @the_user.id %>
+    <div>
+      <a href="/delete_follow_request/<%= current_user.sent_follow_requests.where({ :recipient_id => @the_user.id }).at(0).id %>">
+        Unfollow
+      </a>
+    </div>
+    <% end %>
   </dd>
 
   <dt>Following</dt>
@@ -95,7 +104,7 @@
       <%= a_photo.caption %>
     </td>
     <td>
-      <%= time_ago_in_words(a_photo.created_at) %>
+      <%= time_ago_in_words(a_photo.created_at) %> ago
     </td>
     <td>
       <%= a_photo.likes.count %>
