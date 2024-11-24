@@ -14,7 +14,11 @@ class UsersController < ApplicationController
 
     @the_user = matching_users.at(0)
 
-    render({ :template => "users/show" })
+    if @the_user.followers.where({ :id => current_user.id }).at(0) != nil || @the_user.private == false
+      render({ :template => "users/show" })
+    else
+      redirect_to("/users", { :alert => "You're not authorized for that." })
+    end
   end
 
   def show_liked
