@@ -35,11 +35,21 @@
       <% end %>
     </ul>
     <% end %>
-    <% if @the_user.followers.where({ :id => current_user.id }) != nil && current_user.id != @the_user.id %>
+    <% if @the_user.followers.where({ :id => current_user.id }).at(0) != nil && current_user.id != @the_user.id %>
     <div>
       <a href="/delete_follow_request/<%= current_user.sent_follow_requests.where({ :recipient_id => @the_user.id }).at(0).id %>">
         Unfollow
       </a>
+    </div>
+    <% else %>
+    <div>
+      <form action="/insert_follow_request" method="post">
+        <input type="hidden" name="query_recipient_id" value="<%= @the_user.id %>">
+
+        <button>
+          Follow
+        </button>
+      </form>
     </div>
     <% end %>
   </dd>
