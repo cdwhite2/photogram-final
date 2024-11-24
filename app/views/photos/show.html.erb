@@ -52,7 +52,7 @@
       </dt>
       <dd>
         <% @the_photo.fans.each do |a_fan| %>
-          <% if a_fan.username == @the_photo.fans.last.username %>
+          <% if a_fan.object_id == @the_photo.fans.last.object_id %>
         and <%= a_fan.username %>
           <% else %>
         <%= a_fan.username %>,
