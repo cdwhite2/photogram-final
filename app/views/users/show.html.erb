@@ -95,7 +95,7 @@
       <%= a_photo.caption %>
     </td>
     <td>
-      <%= a_photo.created_at %>
+      <%= time_ago_in_words(a_photo.created_at) %>
     </td>
     <td>
       <%= a_photo.likes.count %>
