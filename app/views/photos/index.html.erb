@@ -6,26 +6,28 @@
   </div>
 </div>
 
-  <form action="/insert_photo" method="post" class="form-horizontal" enctype="multipart/form-data">
+<% if current_user != nil %>
+<form action="/insert_photo" method="post" class="form-horizontal" enctype="multipart/form-data">
        
-      <label for="browser_input_image">
-        Image
-      </label>
+  <label for="browser_input_image">
+    Image
+  </label>
 
-      <input type="file" id="browser_input_image" name="query_image" placeholder="Enter URL for the image..." class="form-control">
+  <input type="file" id="browser_input_image" name="query_image" placeholder="Enter URL for the image..." class="form-control">
     
-      <label for="caption_box">
-        Caption
-      </label>
+  <label for="caption_box">
+    Caption
+  </label>
 
-      <textarea id="caption_box" name="query_caption" rows="2" placeholder="Enter a caption for the photo"></textarea>
+  <textarea id="caption_box" name="query_caption" rows="2" placeholder="Enter a caption for the photo"></textarea>
     
-    <button>
-      Add photo
-    </button>
-  </form>
+  <button>
+    Add photo
+  </button>
+</form>
 
 <hr>
+<% end %>
 
 <div>
   <div>
